@@ -222,7 +222,7 @@ func (s *Store) migrate(ctx context.Context, ms []migration) error {
 	}
 	defer func() { _ = tx.Rollback() }() // no-op after Commit
 	// checksumTableExists tracks whether migration_checksums is available
-	// within this transaction (it may be created mid-loop by migration 0003).
+	// within this transaction (it may be created mid-loop by migration 0005).
 	checksumTableExists := false
 	for _, m := range ms {
 		if _, err := tx.ExecContext(ctx, m.sql); err != nil {
@@ -254,7 +254,7 @@ func (s *Store) migrate(ctx context.Context, ms []migration) error {
 
 // verifyChecksums compares stored checksums for applied migrations against
 // the binary's embedded copies. It also backfills checksums for applied
-// migrations that predate migration 0003 (the first run after upgrading).
+// migrations that predate migration 0005 (the first run after upgrading).
 func (s *Store) verifyChecksums(ctx context.Context, ms []migration) error {
 	var n int
 	if err := s.DB.QueryRowContext(ctx, `SELECT count(*) FROM sqlite_master WHERE type='table' AND name='migration_checksums'`).Scan(&n); err != nil || n == 0 {

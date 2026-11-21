@@ -1,4 +1,4 @@
--- 0003_migration_checksums: records a SHA-256 checksum for each applied
+-- 0005_migration_checksums: records a SHA-256 checksum for each applied
 -- migration so startup can detect an edited migration file. Applied in one
 -- transaction by internal/store.
 --

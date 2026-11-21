@@ -1,4 +1,4 @@
--- 0004_provenance: records the transaction hash and source account that
+-- 0006_provenance: records the transaction hash and source account that
 -- created each contract version. Applied in one transaction by internal/store.
 --
 -- Both columns are NULL for rows written before this migration (seeded
